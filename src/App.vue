@@ -18,17 +18,13 @@ export default {
   data() {
     return {
       title: 'Photoblog',
-      photos: [
-       {
-        url: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTwV4kVzT5McBdGSgqlVeRzubrNH_mOrrkKseDOGFURq20HmsrelEfMU7It',
-        name: 'Dog'
-       },
-       {
-        url: 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTwV4kVzT5McBdGSgqlVeRzubrNH_mOrrkKseDOGFURq20HmsrelEfMU7It',
-        name: 'Dog'
-       },
-      ]
+      photos: []
     }
+  },
+  created() {
+      this.$http.get('http://localhost:3000/v1/fotos')
+      .then(res => res.json())
+      .then(photos => this.photos = photos, err => console.log(err));
   }
 }
 </script>
